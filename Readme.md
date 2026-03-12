@@ -72,3 +72,7 @@ so that we use the prettier configuration.
 
 we also created the .prittierignore 
 this file is used to inform the prettier that in which files we are not going to use the configuration of prettier.
+
+////////////////////////////////// complete ////////////////////
+
+this are file structure you have to follow.
