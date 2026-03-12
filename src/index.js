@@ -3,6 +3,7 @@ import mongoose from "mongoose"
 import { DB_NAME } from "./constants.js"; // here we import this because during connection we need the name of the DataBase.
 import connectDB from "./DB/index.js"; // here we import the function which we created at the DB folder
 import dotenv from "dotenv"
+import { app } from "./app.js";  // we have to import the app first before begin work
 
 dotenv.config({path:".env"});
 
@@ -49,4 +50,15 @@ const app = express();
 
 */
 
-connectDB();  // this call the fucntion of connectDB which we created inside the index.js file inside the DB folder to make connection.
+const port = process.env.PORT || 4000;
+
+connectDB()
+.then(()=>{
+    app.listen(port,()=>{
+        console.log(`server is running at PORT : ${port}`)
+    })
+})
+.catch((err)=>{
+    console.log("MongoDb connection Failed !! ", err);  // simply print the error message.
+}) // this call the fucntion of connectDB which we created inside the index.js file inside the DB folder to make connection.
+// when the database is connected it will always return the promises. we can hadle it with the help of then and catch

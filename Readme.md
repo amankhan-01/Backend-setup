@@ -95,7 +95,7 @@ this file is used to inform the prettier that in which files we are not going to
 this are file structure you have to follow.
 
 
-/////////////////////// connecting the database ///////////////////
+/////////////////////// new chapter 7 connecting the database ///////////////////
 
 there are two ways of connecting data base.
 1) connecting database inside the index.js file 
@@ -131,3 +131,64 @@ using the second Way
 to see this how we connect the db see the index.js file which we created inside the DB folder.
 
 now you can run the program by npm run dev and see that the database is connected succesfully.
+
+/////////////////// complete //////////////////
+
+///////////////// new chapter 8 API Handling ////////////////////
+
+in this we are going to learn about the API Handling.
+so we have to work with express to handling api so we began work in app.js
+see the code for in app js for understanding.
+we also make changes in the index.js after writting app see that file also.
+we mostly work with request and response.
+when we making the request there are many form in which we get the data like form, cookie, name, baseURL, method, ip, path, route, etc you can see many in this URL => https://expressjs.com/en/5x/api.html
+
+mostly we work with params and body
+
+params => taking data from URL you see the question mark in url this is for params.
+body => here the data comes with different format like form, json etc.
+sometimes we wrok with middlewares like cookies and CORS (Cross Origin Resources Sharing) so these two are the packages required and we study both of them.
+for cookie we have to install it with npm by below command
+npm i cookie-parser
+for cors we have to install it with npm by below command
+npm i cors
+
+important point whenever we are going to work with middlewares and do configuration settings we use .use syntax.
+
+CORS => CORS is a Node.js middleware for Express/Connect that sets CORS response headers. These headers tell browsers which origins can read responses from your server.
+
+cookie-parse => Parse Cookie header and populate req.cookies with an object keyed by the cookie names. Optionally you may enable signed cookie support by passing a secret string, which assigns req.secret so it may be used by other middleware.
+
+middlewares => understand middleware with this example suppose that you hit the/twitter url and in response you get amankhan_1 so before sending any response it is compulsory you are login to check that you are login or not this. this checking is known as middleware. you can use more than one middleware for checking. there are sequence of checking.
+
+main you see that whenever you try a get request you write like this.
+app.get("/",(req,res)=>{ // here ther are four parameters. err, req, res, next but we only write two so update it.
+    working code here.
+})
+
+we already know that req, res, and we also know err by there name it is error. we are focus on next if you use the next than we are going to use middleware.next is just a flag. we write this code soon.
+
+/////////////////// making the centralize utility for communication with db //////////////////
+
+as we know that we use to communicate multiple times with the database so reqriting the code of connecting db is not professional. so we make it as the utility and wrap it through this way whenever we need to communicate with db we didn't want to call it you simply pass the fucntion and utility method execute it.
+
+there are two ways to wrap the database inside the function first is by using try and catch and second is by using promise and then and catch. // you can revise the promises and try - catch by GPT.
+
+important point => higher order functions are those function which take the another function as the parameter or arguement and Returns a function as its result.
+
+////////////// standardizing the error and rsponse ///////////////////
+
+so when we are handle the error there is no proper structure of the error. sometimes we send the status code or sometimes we are not sending it. sometime we send the json.response sometimes we didn't send it.we also have to standardize this error and response. to manage this node give the entire class for error you can visit the URL => https://nodejs.org/api/errors.html. so we handle this inside the utils by using class.
+
+same this way we can also create the another file inside the utils to handle the response.
+
+in this file we talk about the status code you can learn more about this but visiting the given site.
+https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status
+
+Status Code => HTTP response status codes indicate whether a specific HTTP request has been successfully completed. Responses are grouped in five classes:
+
+Informational responses (100 – 199)
+Successful responses (200 – 299)
+Redirection messages (300 – 399)
+Client error responses (400 – 499)
+Server error responses (500 – 599)
