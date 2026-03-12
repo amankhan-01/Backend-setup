@@ -20,6 +20,23 @@ here you write the lagnuage in which you work in the search bar and press the cr
 ////////////////////////////// env file ///////////////////////////
 
 this file is also very important for production level also to secure the sensitive data.
+you can install it by ruuning below command.
+npm i dotenv
+
+so env is the sensitive file or having environment variables and developer want that all the data inside it load as soon as we enter the entry point.
+
+so we add required('dotenv').config({path:".env"});
+
+this above method is used when we use comman js method as we already know.
+
+import dotenv from "dotenv";
+dotenv.config({path:".env"}); 
+this above method is used when we use comman js method as we already know.
+the method of import syntax is introduces recently and not available in the official documentation.
+
+if you go with the import method update the below line in script
+
+update from this => "dev": "nodemon src/index.js" to this => "dev": "nodemon -r dotenv/config --experimental-json-modules src/index.js"
 
 ///////////// changes in package.json file ///////////////
 
@@ -76,3 +93,41 @@ this file is used to inform the prettier that in which files we are not going to
 ////////////////////////////////// complete ////////////////////
 
 this are file structure you have to follow.
+
+
+/////////////////////// connecting the database ///////////////////
+
+there are two ways of connecting data base.
+1) connecting database inside the index.js file 
+2) connecting database inside the db folder of src folder (better, clean and professional approach)
+
+we use MongoDb Atlas here.
+vist the mongodb atlas.
+make the cluster and user over there create the username and password.
+on the cluster overview click on the connect button and than select compass and copy the url and paste it inside the env file inside the MONGODB_URI variable and replace the password with your password and remove the slash from the last.
+
+//////////////// now connecting the database with backend /////////////////////
+
+so at first we have to give the name to the Database so we give it inside the constants file because if you want to change the name of database you simply change in that file and we didn't place it inside the env file because it is not much sensitive.
+
+before connecting Database to the backend you have to install mongoose and express with the help of below commands.
+
+npm i mongoose
+npm i express
+
+npm i mongoose express (by this way you can install both at one command)
+
+always know these two points before working with the database for better approach.
+
+1) whenever you try to talk with the database may there is an error occur so to overcome with this problem use try and catch and promises.
+2) Database is always is in another continent. so basically whenever you try to talk with database it takes time. so to overcome this problem always use the async await.
+
+using first way.
+
+to see this how we connect the db see the index.js file
+
+using the second Way
+
+to see this how we connect the db see the index.js file which we created inside the DB folder.
+
+now you can run the program by npm run dev and see that the database is connected succesfully.
