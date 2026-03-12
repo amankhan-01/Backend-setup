@@ -2,10 +2,10 @@
   "name": "vid_6_with_chai_or_code",
   "version": "1.0.0",
   "description": "complete professional setup for backend",
+  "type": "module",
   "main": "index.js",
-  "type": "module",  // here we use this to use the import functionality.
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev":"nodemon src/index.js"
   },
   "keywords": [
     "javascript",
@@ -13,5 +13,8 @@
     "professional"
   ],
   "author": "Aman Khan",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^3.1.14"
+  }
 }
