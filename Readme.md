@@ -192,3 +192,33 @@ Successful responses (200 – 299)
 Redirection messages (300 – 399)
 Client error responses (400 – 499)
 Server error responses (500 – 599)
+
+///////////////////////// complete ////////////////////////
+
+///////////////// new chapter 9 User and Video model with hooks and JWT ////////////////////
+
+In this we are going to discuss about user and video model and going to know about aggregation pipeline, JWT and bcrypt.
+
+this is the link of the models => https://app.eraser.io/workspace/YtPqZ1VogxGy1jzIDkzj
+
+here we use the mongoose aggregate peginate v2 for queries and all.you can install this package by using the command => npm i mongoose-aggregate-paginate-v2
+this will use as an Plugin.
+What is an Aggregate Query in MongoDB?
+An aggregate query is used to process and analyze multiple documents in a collection and produce a calculated result.
+It is used when you want to perform operations like:
+filtering
+grouping
+counting
+averaging
+sorting
+transforming data
+Instead of just fetching data, it analyzes the data.
+Aggregate query is used to analyze and calculate data from multiple documents in MongoDB.
+
+we use the bcrypt to encrypt the password and store the encrypted password in the database.
+A library to help you hash passwords. you can install this package by using the command => npm i bcrypt
+
+we use the JWT (jsonwebtoken) for building tokens.these token aren't normally human readable it is created by cryptographical alorithm. it has three parts. header, payload, secret. you can install it by command => npm i jsonwebtoken
+jwt is like a bearer token so if someone has this token i will give the data to them.
+JWT library will make the token but it needs some variable.
+
