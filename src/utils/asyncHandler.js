@@ -1,10 +1,12 @@
 // in this file we ues both the method to wrap the funciton
 
+// the advantage of this file is we didn't put each request in promise and try-catch syntax
+
 ///////////// by promise method //////////////////////
 
 
 const asyncHandler = (requestHandler) => {
-    (req, res, next) =>{
+    return (req, res, next) =>{
         Promise.resolve(
             requestHandler (req, res, next)
         )

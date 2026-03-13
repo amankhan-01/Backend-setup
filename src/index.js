@@ -32,7 +32,7 @@ const app = express();
     try{ // always use the try and catch while working with database.
         await mongoose.connect(`${process.env.MONGODB_URI}/${DB_NAME}`);  // here we use the await so that connection established properly. and uses mongoose.connect to connected the database and give the URL with Name of database.
         
-        app.on("error",(error)=>{  // this is the listener used for suppose that database is connected but express didn't talk with db properly.
+        app.on("error",(error)=>{  // this is the listener used for like suppose that database is connected but express didn't talk with db properly.
             console.log("ERROR: ", error);
             throw error
         })

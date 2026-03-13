@@ -221,4 +221,68 @@ A library to help you hash passwords. you can install this package by using the 
 we use the JWT (jsonwebtoken) for building tokens.these token aren't normally human readable it is created by cryptographical alorithm. it has three parts. header, payload, secret. you can install it by command => npm i jsonwebtoken
 jwt is like a bearer token so if someone has this token i will give the data to them.
 JWT library will make the token but it needs some variable.
+ 
+/////////////////////  complete ///////////////////////////
 
+the scema structure is ready and utils are also ready. now we focus on writing controllers and how write routes and how to query with database.
+
+/////////////////// new chapter 10 uploading file in database ////////////////////
+
+In this we are going to learn that how we upload the file. this is complete work of backend developer not the frontend devloper they only give you the file using form and give you the link of that file during submission.
+the express also doesn't have much file uploading capabilities so we have to configure the things.
+the best appraoch is we store the file in the third party services like AWS and all we cannot store the files in the database.
+once you know any one type of file handling than you understand all type of file handling.
+file will not come in the every end point of API. may be it comes with the registration. but i will never come with the login because no one upload file during login.
+generay developer create the controller to handle the files but the professional approach is create it in utility.
+if you learn how to handle images than you also handle the pdf videos word etc the code is same. and whenever we want to use it we inject it as the middleware.
+
+so we use the services and packages we use in this chapter.
+
+the service we use in for this is cloudinary
+the packages we use are express file upload or mutler
+you can use any one package we use multer here because it is in demand.
+
+first install the cloudinary package using command => npm i cloudinary
+second install the multer package using command => npm i multer
+
+1 => so the process is the user upload the file.
+2 => we temporarily store the file in our local server using multer.
+3 => we take that file from the local server and upload it in our service.
+
+so you think that why we store the file in our server temporarily we directly upload it to the service.
+you can also do this but suppose that due to an error the data doesn't upload properly so once the image is in our local server the we can atleast retry it. this is the professional upload.
+
+Multer => Multer is a node.js middleware for handling multipart/form-data, which is primarily used for uploading files.
+
+there are two engines in multer to store the data.
+1 => diskstorage
+2 => Memory Storage
+
+diskstorage => In Multer, disk storage (diskStorage) is an engine that lets you save uploaded files directly to your server's hard drive. It gives you full control over where the file is saved and what name it gets
+=> Saves the file as a physical file on your server's filesystem. This is ideal for permanent storage, user uploads, and scenarios where you need to serve the file directly later
+
+Memory Storage =>It is designed for scenarios where you need to process or transform the file's data immediately, without the intermediate step of writing it to, and then reading it from, a disk.
+=> It Keeps the file in memory as a Buffer object and does not create a file on disk. This is useful for temporary processing, such as validation, transformation, or immediately uploading the file to a cloud service like Cloudinary or AWS S3
+
+here we use diskstorage.
+
+////////////////// complete /////////////
+
+till now we setup the basic and and write all the things in backend which is possible in industry level. from now we have to write logics and controllers.
+
+/////////////////// new chapter 11 router and controller ////////////////////
+
+from this we start writng controller. the more you write the controller the more your logic building improves.
+
+in this video we are only register the user.
+
+here we create our first controller name user.controller.js
+
+next we create the route. so we make the methods know we implement that when this method rund or executed. when any URL hits than this methods run so for this we created the seperate folder of routes.
+
+To test the API most of the developer use postman seperately.
+and we test all the thing there
+
+////////// complete //////////////
+
+in next chapter we properly login the user take all the possible data and store it in the DB

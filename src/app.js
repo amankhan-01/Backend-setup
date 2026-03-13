@@ -32,4 +32,18 @@ app.use(express.static("public")); // this is used when you get the data in the 
 
 app.use(cookieParser()); // this also has some options but accoeding to hitesh sir there is no need.
 
+/////// important Points //////////
+// All the controllers and routes are written here.
+
+// routes import 
+
+import userRouter from "./routes/user.routes.js"  // here we also import like this.
+
+// routes declaration
+// in previous we simply write app.get and it works because you write both the route and controllers simultaneously but this will not work now because we seperate the routes and controllers. so we use the middleware to use this app functionality.
+
+app.use("/api/v1/users",userRouter) // whenever URL hit the /users the control goes to userRouter file.here we also follow the standrad practice and give the API in V1 (version 1)
+
+
+
 export { app }
