@@ -57,7 +57,7 @@ const userSchema = new Schema(
 userSchema.pre("save", async function (next){ // here we didn't use arrow function because arrow function didn't have this context or reference. and this function takes time so we use async. so this is the middleware we use the next as an parameter.
 
     if(!this.isModified("password")) return next(); // this will prevent the decryption of password everytime user changes occur for example user change the profile, name, email etc. so we simply add the condition when the password changes than the below code executed unless the above code didn't allow to execute below code.
-    this.password = bcrypt.hash(this.password,10) // here the number indicates the round of hashing.
+    this.password = await bcrypt.hash(this.password,10); // here the number indicates the round of hashing.
     next();
 })
 

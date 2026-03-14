@@ -286,3 +286,7 @@ and we test all the thing there
 ////////// complete //////////////
 
 in next chapter we properly login the user take all the possible data and store it in the DB
+
+/////////////////// new chapter 12 creating user controller ////////////////////
+
+we use the ? (question mark) it simlply means that ki jiske sath laga hoga wo cheez hai ki nahi matlab khali to nhi hai.
