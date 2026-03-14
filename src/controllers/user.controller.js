@@ -46,7 +46,7 @@ const registerUser = asyncHandler(async (req,res) => {
 
     const existedUser = await User.findOne({  // we check the user by using the findOne method of MongoDB. this is used to find the user according to the give values. you can also use the find but findOne is different because if it find the match at first it will return that user not checking for further.
         // email // this is used for single search or query
-        $or: [{email},{username}] //this is used for multiple queris. with the help of MongoDb operate start's with $ (dollar) we can search for more than one query in the DB. you can add more query by putting commas and write the name of the field inside the currly brasis.
+        $or : [{email},{username}] //this is used for multiple queris. with the help of MongoDb operate start's with $ (dollar) we can search for more than one query in the DB. you can add more query by putting commas and write the name of the field inside the currly brasis.
     })
 
     if(existedUser){
@@ -57,10 +57,23 @@ const registerUser = asyncHandler(async (req,res) => {
 
     // we know that req.body gives you the data but we also use the middleware and this middleware also give some data. we add the multer as a middleware to handle file so it also give the acces of those file.
 
-    const avatarLocalPath = req.files?.avatar[0]?.path; // here ? mark simly means ki jiske sath laga hoga wo cheez hai ki nahi matlab khali to nhi hai. and this line is used to take the path of the file comming from the user.
-    console.log("file from multer",req.files);
+    // const avatarLocalPath = req.files?.avatar[0]?.path; // here ? mark simly means ki jiske sath laga hoga wo cheez hai ki nahi matlab khali to nhi hai. and this line is used to take the path of the file comming from the user. this line also shows error not work according to flow.
+    // console.log("file from multer",req.files);
 
-    const coverImageLocalPath = req.files?.coverImage[0]?.path;
+    // const coverImageLocalPath = req.files?.coverImage[0]?.path; // this line throw an error.because if i don't pass any cover image than nothing is there in 0 because we didn't make any check in coverimage although cloudinary will manage it. so whenever you did optional chaining or optional finding or you didn't check the value comes or not. we simply use the classical if else condition.
+
+    let avatarLocalPath;
+
+    if(req.files && Array.isArray(req.files.avatar) && req.files.avatar.length > 0 ){
+        avatarLocalPath = req.files.avatar[0].path;
+    }
+
+    let coverImageLocalPath;
+
+    // you can also did with avatar file 
+    if(req.files && Array.isArray(req.files.coverImage) && req.files.coverImage.length > 0 ){
+        coverImageLocalPath = req.files.coverImage[0].path; // here we didn't use any optional chaining or option finding as we already Know array is there.
+    }
 
     //// check avatar file  /////////////////
 
@@ -74,8 +87,7 @@ const registerUser = asyncHandler(async (req,res) => {
     const coverImageSucess = await uploadOnCloudinary(coverImageLocalPath);
 
     console.log("avatar Image URL",avatarSucess.url);
-    console.log("cover Image URL", coverImageSucess.url);
-
+    // console.log("cover Image URL", coverImageSucess.url); // this line gives error when we pass only sigle image of avatar.
     /////// checking the avatar is uploaded success or not ///////
 
     if(!avatarSucess){

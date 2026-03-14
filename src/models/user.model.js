@@ -54,11 +54,11 @@ const userSchema = new Schema(
 // direct encrption is not possible so we use the middleware hooks like pre hook. this pre hook is used when whenever the user save the data this hook executed just before the data is going to be saved.
 // here we use the save event so that we use it just before the data saves. you can visit this link to see all the events or functionality => https://mongoosejs.com/docs/middleware.html
 
-userSchema.pre("save", async function (next){ // here we didn't use arrow function because arrow function didn't have this context or reference. and this function takes time so we use async. so this is the middleware we use the next as an parameter.
+userSchema.pre("save", async function (){ // here we didn't use arrow function because arrow function didn't have this context or reference. and this function takes time so we use async. so this is the middleware we use the next as an parameter.
 
-    if(!this.isModified("password")) return next(); // this will prevent the decryption of password everytime user changes occur for example user change the profile, name, email etc. so we simply add the condition when the password changes than the below code executed unless the above code didn't allow to execute below code.
+    if(!this.isModified("password")) return  // this will prevent the decryption of password everytime user changes occur for example user change the profile, name, email etc. so we simply add the condition when the password changes than the below code executed unless the above code didn't allow to execute below code.
     this.password = await bcrypt.hash(this.password,10); // here the number indicates the round of hashing.
-    next();
+    // next(); // this will give an error so i go trough documentation there is not parameters require
 })
 
 // so we encrypt the password but the user didn't type the encrypted password user typethe password in the string to check the password is correct or not we create custom methods.

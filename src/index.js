@@ -5,7 +5,7 @@ import connectDB from "./DB/index.js"; // here we import the function which we c
 import dotenv from "dotenv"
 import { app } from "./app.js";  // we have to import the app first before begin work
 
-dotenv.config({path:".env"});
+dotenv.config({path:"../.env"});
 
 
 
